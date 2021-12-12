@@ -391,7 +391,11 @@
     {
       "packageName": "server",
       "projectFolder": "apps/server"
-    }
+    },
+		{
+			"packageName": "tire_mobile",
+			"projectFolder": "apps/tire_mobile"
+		}
     // {
     //   /**
     //    * The NPM package name of the project (must match package.json)
