@@ -1,1 +1,0 @@
-docker-compose --project-directory=./apps/api up --build -d

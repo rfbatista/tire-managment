@@ -1,0 +1,49 @@
+version: '3.8'
+
+networks:
+  tire-network:
+volumes:
+  tire_management_db_dev_data:
+    name: tire_management_db_dev_data 
+
+services:
+  tire_management_db:
+    container_name: tire_management_db
+    image: postgres:12-alpine
+    ports:
+      - 5002:5432
+    env_file: .env
+    volumes:
+      - tire_management_db_dev_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: $DB_NAME
+      POSTGRES_USER: $DB_USER
+      POSTGRES_PASSWORD: $DB_PASSWORD
+    networks:
+      - tire-network
+  
+  tire_managment_api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: tire_managment_api
+    env_file: .env
+    ports:
+      - 3000:3000
+      - 9229:9229
+    environment:
+      PORT: 3000 
+      LOG_HOSTNAME_PREFIX: $LOG_HOSTNAME_PREFIX
+      LOG_LEVEL: $LOG_LEVEL
+      DB_NAME: $DB_NAME
+      DB_USER: $DB_USER
+      DB_PASSWORD: $DB_PASSWORD
+      DB_PORT: $DB_PORT
+      DB_HOST: tire_management_db
+    volumes:
+      - ./:/app
+    networks:
+      - tire-network
+    depends_on:
+      - tire_management_db
+    
