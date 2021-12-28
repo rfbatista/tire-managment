@@ -11,7 +11,7 @@ export enum TireStatus {
 export interface ITire {
   identifier: string;
   description: string;
-  model: TireModel;
+  model?: TireModel;
   status: TireStatus;
 }
 

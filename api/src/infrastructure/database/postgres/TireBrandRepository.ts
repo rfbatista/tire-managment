@@ -1,12 +1,10 @@
-import { TireBrand } from '../packages/frontend/server/domain/entities/TireBrand';
 import {
   AbstractRepository,
   EntityRepository,
-  getCustomRepository,
-  Repository,
 } from 'typeorm';
 import { TireBrandSchema } from '../schemas/TireBrandSchema';
 import { Service } from 'typedi';
+import { TireBrand } from 'domain/entities/TireBrand';
 
 @EntityRepository()
 @Service()
