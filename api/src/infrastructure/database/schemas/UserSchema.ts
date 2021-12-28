@@ -1,12 +1,13 @@
 import { User } from 'domain/entities/User';
 import { Field, ID } from 'type-graphql';
-import { Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Column, PrimaryGeneratedColumn, OneToMany, Entity } from 'typeorm';
 import { UserPasswordSchema } from './UserPasswordSchema';
 
 export interface IUserSchema {
   name: string;
 }
 
+@Entity('User')
 export class UserSchema implements IUserSchema {
   @PrimaryGeneratedColumn('uuid')
   @Field(() => ID)

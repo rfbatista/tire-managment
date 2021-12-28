@@ -14,6 +14,8 @@
     "typescript": "^4.3.5"
   },
   "dependencies": {
+    "@nestjs/common": "^8.2.4",
+    "@nestjs/core": "^8.2.4",
     "apollo-server": "^3.5.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
@@ -21,16 +23,19 @@
     "pg": "^8.7.1",
     "pino": "^7.0.0-rc.3",
     "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.5.1",
     "tsconfig-paths": "^3.12.0",
     "type-graphql": "^1.1.1",
     "typedi": "^0.10.0",
     "typeorm": "^0.2.41",
     "typeorm-typedi-extensions": "^0.4.1",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "@nestjs/platform-express": "^8.0.0"
   },
   "scripts": {
-    "dev": "ts-node-dev -r tsconfig-paths/register src/index.ts | npx pino-pretty",
-    "start": "ts-node -r tsconfig-paths/register src/index.ts | pino-pretty",
+    "dev": "ts-node -r tsconfig-paths/register src/index.ts | npx pino-pretty",
+    "start:prod": "ts-node -r tsconfig-paths/register src/index.ts | pino-pretty",
+    "build": "nest build",
     "test": "jest"
   }
 }

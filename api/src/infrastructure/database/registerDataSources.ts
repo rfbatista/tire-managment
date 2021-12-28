@@ -16,6 +16,7 @@ export const registerDataSources = async () => {
     database: AppConfig.datasource.database.postgres.dbname,
     entities: ['src/infrastructure/database/schemas/*.ts'],
     logging: false,
+    synchronize: true,
     migrations: ['../migrations/**/*.ts'],
     cli: {
       entitiesDir: 'src/infrastructure/database/schemas',
@@ -26,5 +27,7 @@ export const registerDataSources = async () => {
       Logger.info('Connected to database');
       await buildSchema({ resolvers: [TireBrandResolver] });
     })
-    .catch(() => Logger.error('Error trying to connect in database'));
+    .catch((error) =>
+      Logger.error(`Error trying to connect in database: ${error}`)
+    );
 };

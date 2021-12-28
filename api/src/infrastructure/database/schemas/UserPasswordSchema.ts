@@ -2,6 +2,7 @@ import { UserPassword } from 'domain/entities/UserPassword';
 import { Field, ID } from 'type-graphql';
 import {
   Column,
+  Entity,
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
@@ -17,6 +18,7 @@ export interface IUserPasswordSchema {
   active: boolean;
 }
 
+@Entity('UserPassword')
 export class UserPasswordSchema implements IUserPasswordSchema {
   @PrimaryGeneratedColumn('uuid')
   @Field(() => ID)

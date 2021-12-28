@@ -4,6 +4,7 @@ import TireRepository from 'infrastructure/database/postgres/TireRepository';
 import { Tire, TireStatus } from 'domain/entities/Tire';
 import { ApplicationOutput } from '../ApplicationOutput';
 import { IUseCase } from '../IUseCase';
+import { Injectable } from '@nestjs/common';
 
 export type CreateTireInput = {
   identification: string;
@@ -13,7 +14,7 @@ export type CreateTireInput = {
 };
 export type CreateTireOutput = ApplicationOutput<any>;
 
-@Service()
+@Injectable()
 export class CreateTireUseCase
   implements IUseCase<CreateTireInput, Promise<CreateTireOutput>>
 {
