@@ -1,0 +1,3 @@
+import { REACT_APP_BACKEND_ENDPOINT } from '@env';
+
+export const BACKEND_ENDPOINT = REACT_APP_BACKEND_ENDPOINT;

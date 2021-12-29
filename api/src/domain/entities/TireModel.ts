@@ -4,6 +4,7 @@ import { UniqueEntityID } from 'shared/UniqueIdentity';
 import { TireBrand } from './TireBrand';
 
 export interface ITireModel {
+	name: string;
   brand: TireBrand;
   description?: string;
 }
