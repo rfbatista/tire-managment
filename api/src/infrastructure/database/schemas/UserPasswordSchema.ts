@@ -38,7 +38,7 @@ export class UserPasswordSchema implements IUserPasswordSchema {
   @RelationId((user: UserPasswordSchema) => user.user)
   userId: string;
 
-  private constructor(props: IUserPasswordSchema, id?: UniqueEntityID) {
+  private constructor(props: IUserPasswordSchema, id?: string) {
     Object.assign(this, { ...props, id });
   }
 

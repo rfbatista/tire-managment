@@ -1,6 +1,12 @@
 {
 	"extends": "expo/tsconfig.base",
 	"typesRoots": ["./src/types"],
+	"target": "esnext",
+	"baseUrl": ".",
+	"paths": {
+		"@": ["src/*"],
+		"tests": ["tests/*"],
+	},
 	"compilerOptions": {
 		"strict": true
 	}

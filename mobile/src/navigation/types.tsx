@@ -24,13 +24,15 @@ export type RootStackParamList = {
   MoveTire: undefined;
   RegisterMaintenance: undefined;
   RegisterTruck: undefined;
+  RegisterModel: undefined;
+  Alert: { isSucess: boolean };
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
   NativeStackScreenProps<RootStackParamList, Screen>;
 
 export type RootTabParamList = {
-  TabOne: undefined;
+  TabOne: { isSuccess: boolean };
   TabTwo: undefined;
 };
 

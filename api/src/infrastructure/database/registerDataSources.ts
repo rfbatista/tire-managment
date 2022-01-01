@@ -4,19 +4,34 @@ import { createConnection, useContainer } from 'typeorm';
 import { Container } from 'typeorm-typedi-extensions';
 import { AppConfig } from '../AppConfig';
 import { TireBrandResolver } from './resolvers/TireBrandResolver';
+import { CompanySchema } from './schemas/CompanySchema';
+import { TireBrandSchema } from './schemas/TireBrandSchema';
+import { TireModelSchema } from './schemas/TireModelSchema';
+import { TireSchema } from './schemas/TireSchema';
+import { TireRemodelingSchema } from './schemas/TireRemodelingSchema';
+import { UserPasswordSchema } from './schemas/UserPasswordSchema';
+import { UserSchema } from './schemas/UserSchema';
 
 export const registerDataSources = async () => {
   useContainer(Container);
-  createConnection({
+  await createConnection({
     type: 'postgres',
     host: AppConfig.datasource.database.postgres.dbhost,
     port: Number(AppConfig.datasource.database.postgres.dbport),
     username: AppConfig.datasource.database.postgres.dbuser,
     password: AppConfig.datasource.database.postgres.dbpassword,
     database: AppConfig.datasource.database.postgres.dbname,
-    entities: ['src/infrastructure/database/schemas/*.ts'],
+    entities: [
+      TireSchema,
+      TireModelSchema,
+      TireBrandSchema,
+      CompanySchema,
+      TireRemodelingSchema,
+      UserPasswordSchema,
+      UserSchema,
+    ],
     logging: false,
-    synchronize: true,
+		synchronize: true,
     migrations: ['../migrations/**/*.ts'],
     cli: {
       entitiesDir: 'src/infrastructure/database/schemas',

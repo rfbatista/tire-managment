@@ -6,6 +6,7 @@ export enum TireStatus {
   running = 'running',
   discarded = 'discarded',
   sold = 'sold',
+  stock = 'stock',
 }
 
 export interface ITire {
@@ -29,6 +30,6 @@ export class Tire extends Entity<ITire> {
     return this.props.status;
   }
   static create(props: ITire, id?: number) {
-    return new Tire(props, new UniqueEntityId(id));
+    return id ? new Tire(props, new UniqueEntityId(id)) : new Tire(props);
   }
 }

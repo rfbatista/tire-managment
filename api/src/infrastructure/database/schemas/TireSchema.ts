@@ -13,6 +13,7 @@ import {
 import { Field, ObjectType, ID } from 'type-graphql';
 import { Tire, TireStatus } from 'domain/entities/Tire';
 import { CompanySchema } from './CompanySchema';
+import { TireModel } from 'domain/entities/TireModel';
 
 export interface ITireSchema {
   identifier: string;
@@ -52,7 +53,10 @@ export class TireSchema extends Schema<ITireSchema, Tire> {
     return new TireSchema({
       identifier: entity.identifier,
       description: entity.description,
-      model: TireModelSchema.from(entity.model),
+      model:
+        entity.model instanceof TireModel
+          ? TireModelSchema.from(entity.model)
+          : null,
       status: entity.status,
     });
   }

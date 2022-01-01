@@ -20,10 +20,12 @@ import {
   TIRE_MODEL_API_REDUCER_KEY,
 } from '../services/tireModel';
 import { tireApi, TIRE_API_REDUCER_KEY } from '../services/tireApi';
+import { tireBrandApi } from '../services/tireBrand';
 
 const reducers = {
-  [TIRE_MODEL_API_REDUCER_KEY]: tireModelApi.reducer,
-  [TIRE_API_REDUCER_KEY]: tireApi.reducer,
+  [tireModelApi.reducerPath]: tireModelApi.reducer,
+  [tireBrandApi.reducerPath]: tireBrandApi.reducer,
+  [tireApi.reducerPath]: tireApi.reducer,
 };
 
 const combinedReducer = combineReducers<typeof reducers>(reducers);
@@ -41,20 +43,27 @@ const persistConfig = {
   storage: AsyncStorage,
 };
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig, combinedReducer);
 
-export const store = configureStore({
-  reducer: persistedReducer,
+const store = configureStore({
+  reducer: combinedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat([unauthenticatedMiddleware]),
+    }).concat(
+      unauthenticatedMiddleware,
+      tireApi.middleware,
+      tireModelApi.middleware,
+      tireBrandApi.middleware
+    ),
 });
 
 export const persistor = persistStore(store);
 setupListeners(store.dispatch); // NOTE this addition
+
+export default store;
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof combinedReducer>;

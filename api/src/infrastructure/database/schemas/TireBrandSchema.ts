@@ -31,7 +31,7 @@ export class TireBrandSchema implements ITireBrandSchema {
       {
         name: entity.name,
       },
-      String(entity.id.toValue())
+      String(entity.id)
     );
   }
 

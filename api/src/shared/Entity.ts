@@ -9,7 +9,7 @@ export abstract class Entity<T> {
   public readonly props: T;
 
   get id() {
-    return this._id;
+    return this._id.toString();
   }
 
   constructor(props: T, id?: UniqueEntityID) {

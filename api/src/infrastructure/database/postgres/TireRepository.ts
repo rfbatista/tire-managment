@@ -2,11 +2,11 @@ import { AbstractRepository, EntityRepository } from 'typeorm';
 import { TireSchema } from '../schemas/TireSchema';
 import { Tire } from 'domain/entities/Tire';
 import { Injectable } from '@nestjs/common';
-@EntityRepository()
+@EntityRepository(TireSchema)
 @Injectable()
 export default class TireRepository extends AbstractRepository<TireSchema> {
-  async save(tire: Tire) {
+  async create(tire: Tire) {
     const raw = TireSchema.from(tire);
-    return this.manager.save(raw);
+    return this.repository.save(raw);
   }
 }

@@ -35,7 +35,7 @@ export const MenuCard: React.FC<IMenuCard> = ({
       maxWidth='100%'
     >
       <HStack space={1} justifyContent='space-between'>
-        <Box justifyContent='space-between'>
+        <Box justifyContent='space-between' flex={2}>
           <VStack space='1' marginBottom={3}>
             <Text color='white' fontSize='lg'>
               {title}
@@ -71,6 +71,7 @@ export const MenuCard: React.FC<IMenuCard> = ({
           alt='Aang flying and surrounded by clouds'
           height='100'
           rounded='full'
+					flex={1}
           width='100'
         />
       </HStack>

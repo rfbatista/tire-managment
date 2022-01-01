@@ -1,6 +1,6 @@
 import 'react-native-get-random-values';
 import { customAlphabet } from 'nanoid';
-import { ITireModel } from '../../api/src/domain/entities/TireModel';
+import { ITireModel } from './TireModel';
 
 export enum TireStatusEnum {
   running = 'running',
@@ -10,6 +10,7 @@ export enum TireStatusEnum {
 }
 
 export interface ITire {
+	id?: string;
   identifier: string;
   model: ITireModel;
   status: TireStatusEnum;

@@ -27,7 +27,7 @@ export class CompanySchema extends Schema<ICompanySchema, Company> {
         name: entity.name,
         cnpj: entity.cnpj,
       },
-      String(entity.id.toValue())
+      String(entity.id)
     );
   }
 

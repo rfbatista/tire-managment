@@ -6,11 +6,12 @@ import {
   FormControl,
   Pressable,
   IconButton,
+  Spinner,
 } from 'native-base';
-import { TireModelModal } from './TireModelModal';
 import styled from 'styled-components/native';
 import { useSearchTireModelQuery } from '../../../services/tireModel';
 import { ModelItem } from './ModelItem';
+import { ITireModel } from '../../../domain/TireModel';
 
 const ModelButton = styled(Button)`
   align-items: center;
@@ -19,14 +20,21 @@ const ModelButton = styled(Button)`
 
 export const TireModelSelect = () => {
   const [modal, setModal] = React.useState(false);
+  const [tireModel, setTireModel] = React.useState<ITireModel>({
+    name: 'A',
+    brand: {name: 'A'},
+  });
   const { data, isError, isLoading } = useSearchTireModelQuery('o');
   return (
     <FormControl>
       <FormControl.Label>Modelo</FormControl.Label>
       <ModelButton onPress={() => setModal(!modal)}>
-        <ModelItem />
+        {isLoading ? (
+          <Spinner accessibilityLabel='Loading posts' />
+        ) : (
+          <ModelItem item={tireModel} />
+        )}
       </ModelButton>
-      <TireModelModal isOpen={modal} closeModal={() => setModal(false)} />
     </FormControl>
   );
 };

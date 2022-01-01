@@ -41,7 +41,7 @@ services:
       DB_PORT: $DB_PORT
       DB_HOST: tire_management_db
     volumes:
-      - ./:/app
+      - ./:/home/node/app
     networks:
       - tire-network
     depends_on:

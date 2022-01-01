@@ -7,11 +7,8 @@ export interface ITireBrand {
 }
 
 export class TireBrand extends Entity<ITireBrand> {
-  get id() {
-    return this._id;
-  }
   get name() {
-    return this.name;
+    return this.props.name;
   }
 
   static create(props: ITireBrand, id: string): Result<TireBrand> {
